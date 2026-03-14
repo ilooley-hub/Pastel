@@ -201,18 +201,24 @@ agentTabs.forEach((tab) => {
   });
 });
 
+setActiveTab("agent");
 setDiligenceTab("issues");
 setDocumentFilter("customers");
 setTimelineFilter("all");
-setAgentTab("ask");
+setAgentTab("docs");
 
 const hero = document.querySelector(".hero");
-const parallaxItems = Array.from(document.querySelectorAll("[data-parallax]"));
+const parallaxItems = Array.from(
+  document.querySelectorAll(".hero-orbit[data-parallax]")
+);
 const prefersReducedMotion = window.matchMedia(
   "(prefers-reduced-motion: reduce)"
 ).matches;
+const canUseHeroParallax = window.matchMedia(
+  "(min-width: 921px) and (hover: hover) and (pointer: fine)"
+).matches;
 
-if (hero && parallaxItems.length && !prefersReducedMotion) {
+if (hero && parallaxItems.length && !prefersReducedMotion && canUseHeroParallax) {
   let pointerX = 0;
   let pointerY = 0;
   let frame = null;
